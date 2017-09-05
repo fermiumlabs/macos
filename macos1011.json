@@ -4,7 +4,7 @@
   "desktop": "true",
   "cpus": "1",
   "disk_size": "62536",
-  "iso_url": "dmg/OSX_InstallESD_10.11_15A284.dmg",
+  "iso_url": "dmg/OSX_InstallESD_10.11.6_15G31.dmg",
   "memory": "4096",
   "parallels_guest_os_type": "win-8",
   "vagrantfile_template": "tpl/vagrantfile-macos1011.tpl",

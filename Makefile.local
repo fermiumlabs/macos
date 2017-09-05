@@ -1,0 +1,25 @@
+VIRTUALBOX_S3_BUCKET = "s3://fermiumlabs-vagrant-boxes/virtualbox/"
+export VIRTUALBOX_S3_BUCKET
+VMWARE_S3_BUCKET = "s3://fermiumlabs-vagrant-boxes/vmware/"
+export VMWARE_S3_BUCKET
+PARALLELS_S3_BUCKET = "s3://fermiumlabs-vagrant-boxes/parallels/"
+export PARALLELS_S3_BUCKET
+
+upload_virtualbox:
+  s3cmd sync box/virtualbox/  --progress --reduced-redundancy $(VIRTUALBOX_S3_BUCKET)
+upload_vmware:
+  s3cmd sync box/vmware/ --progress --reduced-redundancy $(VMWARE_S3_BUCKET)
+upload_parallels:
+  s3cmd sync box/parallels/ --progress --reduced-redundancy $(PARALLELS_S3_BUCKET)
+
+default: \  
+  packer build -only=vmware-iso -var-file=macos1012.json macos.json
+  packer build -only=parallels-iso -var-file=macos1012.json macos.json
+  packer build -only=vmware-iso -var-file=macos1011.json macos.json
+  packer build -only=parallels-iso -var-file=macos1011.json macos.json
+  packer build -only=vmware-iso -var-file=macos1010.json macos.json
+  packer build -only=parallels-iso -var-file=macos1010.json macos.json  
+  packer build -only=vmware-iso -var-file=macos109.json macos.json
+  packer build -only=parallels-iso -var-file=macos109.json macos.json
+  
+  
